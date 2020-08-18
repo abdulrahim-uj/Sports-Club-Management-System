@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false" />
+	<package name="register" namespace="/" extends="struts-default">
+
+		<action name="login" class="com.sports.Loginact" method="execute">
+			<result name="CA">/ADMIN/home.jsp</result>
+			<result name="Team">/TEAM/home.jsp</result>
+			<result name="TM">/TOURNAMENT/home.jsp</result>
+			<result name="SM">/STADIUM/home.jsp</result>
+			<result name="block">/login.jsp</result>
+		</action>
+
+	 	 <action name="logout" class="com.sports.LogoutAct">
+			<result name="success">/index.jsp</result>
+		</action> 
+		
+		
+
+<!-- /************************ADMIN***************************/ -->
+<!-- ADD details to Database -->
+
+		<action name="Register" class="com.sports.Registeract" method="execute">
+			<result name="success">/login.jsp</result>
+			<result name="failed">/Register.jsp?f=1</result>
+		</action>
+		
+<!-- Page opener link -->
+
+		<action name="addstaffpage" class="com.sports.pagelink.addstaff" method="execute">
+			<result name="success">/ADMIN/addstaff.jsp</result>		
+		</action>		
+		
+<!-- View details from Database -->
+
+		<action name="viewstaff" class="com.sports.view.ViewStaff" method="execute">
+			<result name="success">/ADMIN/view.jsp</result>
+		</action>
+		
+<!-- Edit & Update details form Database -->
+
+		<action name="editstaff" class="com.sports.edit.EditStaffAct" method="execute">
+			<result name="success">/ADMIN/editstaff.jsp</result>
+		</action>
+		
+		<action name="updatestaff" class="com.sports.edit.UpdateStaffAct" method="execute">
+			<result name="success">/ADMIN/editstaff.jsp</result>
+		</action>
+		
+<!-- Delete from Database -->
+
+		<action name="deletestaff" class="com.sports.delete.DeleteStaffAct" method="execute">
+			<result name="success">/ADMIN/view.jsp</result>
+			<result name="error">/ADMIN/view.jsp</result>
+		</action>
+		
+		
+		
+		
+<!-- /************************TEAM***************************/ -->
+<!-- Page opener link -->
+
+		<action name="cricketpage" class="com.sports.pagelink.cricket" method="execute">
+			<result name="success">/TEAM/cricket.jsp</result>		
+		</action>
+		
+		<action name="cricketplayeraddpage" class="com.sports.pagelink.cricketplayer" method="execute">
+			<result name="success">/TEAM/cricketplayeradd.jsp</result>		
+		</action>
+		
+		<action name="modifyteampage" class="com.sports.pagelink.modifyteam" method="execute">
+			<result name="success">/TEAM/modifyteam.jsp</result>		
+		</action>
+		
+		<action name="cricketeventpage" class="com.sports.pagelink.crieventreq" method="execute">
+			<result name="success">/TEAM/cricketevent.jsp</result>		
+		</action>
+		
+		<action name="chat" class="com.sports.pagelink.chat" method="execute">
+			<result name="success">/TEAM/communication.jsp</result>		
+		</action>
+		
+<!-- ADD details to Database -->
+
+		<action name="playerImage" class="com.sports.PlayerUploadAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg,image,jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack">
+			</interceptor-ref>
+				<result name="success">/TEAM/cricketplayeradd.jsp?f=1</result>
+				<result name="input">/TEAM/cricketplayeradd.jsp</result>
+		</action>
+		
+		<action name="createteam" class="com.sports.CreateTeamAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+		
+		<action name="cricketeventreq" class="com.sports.CricketEventReqAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+		
+<!-- View details from Database -->
+
+		<!-- <action name="viewplayers" class="com.sports.view.ViewCriPlayer" method="execute">
+			<result name="success">/TEAM/viewplayers.jsp</result>
+		</action> -->
+	<!-- 	<action name="profileview" class="com.numplate.actions.ProfileView"
+			method="execute">
+			<result name="donepolice">/ProfView.jsp?f=police</result>
+			<result name="donetfpolice">/ProfView.jsp?f=tfpolice</result>
+ -->		
+		<action name="viewplayers" class="com.sports.view.ViewCriPlayer1" method="execute">
+			<result name="player">/TEAM/viewplayers.jsp?f=player</result>
+		</action>
+		
+		 <action name="viewteamm" class="com.sports.view.ViewCriTeam" method="execute">
+			<result name="team">/TEAM/viewteamm.jsp?f=team</result>
+		</action>	 
+		
+		 <!-- <action name="viewteamm" class="com.sports.view.ViewCriTeam1" method="execute">
+			<result name="success">/TEAM/viewteamm.jsp</result>
+		</action> -->	 
+		
+		 <action name="vieweventstatus" class="com.sports.view.ViewEventStatus" method="execute">
+			<result name="success">/TEAM/viewrequeststatus.jsp</result>
+		</action> 
+		
+<!-- Edit & Update details form Database -->
+
+		<action name="editplayer" class="com.sports.edit.EditPlayerAct" method="execute">
+			<result name="success">/TEAM/editcricketplayer.jsp</result>
+		</action>
+		
+		<action name="updateplayer" class="com.sports.edit.UpdatePlayerAct" method="execute">
+			<result name="success">/TEAM/editcricketplayer.jsp</result>
+		</action>
+		
+	<!-- 	<action name="editteam" class="com.sports.edit.EditTeamAct" method="execute">
+			<result name="success">/TEAM/editcricketplayer.jsp</result>
+		</action>
+		
+		<action name="updateteam" class="com.sports.edit.UpdatePlayerAct" method="execute">
+			<result name="success">/TEAM/editcricketplayer.jsp</result>
+		</action>
+		-->
+<!-- Delete from Database -->
+
+		<action name="deleteplayer" class="com.sports.delete.DeletePlayerAct" method="execute">
+			<result name="success">/TEAM/viewplayers.jsp</result>
+			<result name="error">/TEAM/viewplayers.jsp</result>
+		</action>
+		
+		<action name="deleteteam" class="com.sports.delete.DeleteTeamAct" method="execute">
+			<result name="success">/TEAM/viewteamm.jsp</result>
+			<result name="error">/TEAM/viewteamm.jsp</result>
+		</action>
+
+
+
+
+<!-- /************************STADIUM***************************/ -->
+<!-- Page opener link -->
+
+		<action name="stadiumpage" class="com.sports.pagelink.stadium" method="execute">
+			<result name="success">/STADIUM/stadium.jsp</result>		
+		</action>
+		
+	<!-- 	<action name="upcomingfixpage" class="com.sports.pagelink.upcomingfixture" method="execute">
+			<result name="success">/STADIUM/upcomingfixture.jsp</result>		
+		</action>      -->
+		
+		<action name="previouspage" class="com.sports.pagelink.previous" method="execute">
+			<result name="success">/STADIUM/addprevious.jsp</result>		
+		</action>
+		
+		<action name="battingscraddpage" class="com.sports.pagelink.batscr" method="execute">
+			<result name="success">/STADIUM/battingscradd.jsp</result>		
+		</action>
+		
+		<action name="bowlingscraddpage" class="com.sports.pagelink.bowlscr" method="execute">
+			<result name="success">/STADIUM/bowlingscradd.jsp</result>		
+		</action>
+			
+<!-- ADD details to Database -->
+
+		<!-- <action name="userImage" class="com.sports.FileUploadAction">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg,image,jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack">
+			</interceptor-ref>
+				<result name="success">/STADIUM/stadium.jsp?f=1</result>
+				<result name="input">/STADIUM/stadium.jsp</result>
+		</action> -->
+		
+		<action name="userImage" class="com.sports.AddStadiumAct">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">2097152</param>
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg,image/pjpeg,image,jpg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack">
+			</interceptor-ref>
+				<result name="success">/STADIUM/stadium.jsp?f=1</result>
+				<result name="input">/STADIUM/stadium.jsp</result>
+		</action>
+		
+		<action name="batscr" class="com.sports.BatScorAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+		
+		<action name="bowlscr" class="com.sports.BowlScorAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+		
+	 	 <action name="booked" class="com.sports.BookedAct" method="execute">
+			<result name="success">/STADIUM/fixturedetails.jsp</result>
+		</action>  
+		<!-- <action name="booked" class="com.sports.edit.BookingAct1" method="execute">
+			<result name="success">/STADIUM/fixturedetails.jsp</result>
+		</action> -->   
+		<action name="eventresult" class="com.sports.EventResultAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+		
+		
+<!-- View details from Database -->
+
+		<action name="viewstadium" class="com.sports.view.ViewStadium" method="execute">
+			<result name="success">/STADIUM/viewstadium.jsp</result>
+		</action>
+		
+		<action name="viewfixture" class="com.sports.view.ViewFixture" method="execute">
+			<result name="success">/STADIUM/fixturedetails.jsp</result>
+		</action>
+		
+		<action name="viewbatscr" class="com.sports.view.ViewBatScr" method="execute">
+			<result name="success">/STADIUM/scrbatting.jsp</result>
+		</action>
+		
+		<action name="viewbowlscr" class="com.sports.view.ViewBowlScr" method="execute">
+			<result name="success">/STADIUM/scrbowling.jsp</result>
+		</action>
+		
+		<action name="viewpreevent" class="com.sports.view.ViewPreEvent" method="execute">
+			<result name="success">/STADIUM/viewpreviousevent.jsp</result>
+		</action> 
+		
+		<action name="viewrecords" class="com.sports.view.ViewPreRecords" method="execute">
+			<result name="success">/STADIUM/previeweve.jsp</result>
+		</action> 
+		
+		<action name="batscore" class="com.sports.view.ViewAddBat" method="execute">
+			<result name="success">/STADIUM/battingscradd.jsp</result>
+		</action> 
+		
+		<action name="bowlscore" class="com.sports.view.ViewAddBowl" method="execute">
+			<result name="success">/STADIUM/bowlingscradd.jsp</result>
+		</action> 
+		
+<!-- Edit & Update details form Database -->
+
+		<action name="editstadium" class="com.sports.edit.EditStadiumAct" method="execute">
+			<result name="success">/STADIUM/editstadium.jsp</result>
+		</action>
+		
+		<action name="updatestadium" class="com.sports.edit.UpdateStadiumAct" method="execute">
+			<result name="success">/STADIUM/editstadium.jsp</result>
+		</action>
+		
+		<action name="booking" class="com.sports.edit.BookingAct" method="execute">
+			<result name="success">/STADIUM/upcomingfixture.jsp</result>
+		</action>
+		
+		<action name="addprevious" class="com.sports.edit.AddEventResultAct" method="execute">
+			<result name="success">/STADIUM/addprevious.jsp</result>
+		</action>
+<!-- Delete from Database -->
+
+		<action name="deletestadium" class="com.sports.delete.DeleteStadiumAct" method="execute">
+			<result name="success">/STADIUM/viewstadium.jsp</result>
+			<result name="error">/STADIUM/viewstadium.jsp</result>
+		</action>
+
+
+
+
+
+<!-- /************************TOURNAMENT***************************/ -->
+<!-- Page opener link -->
+
+		<action name="crickettourpage" class="com.sports.pagelink.cricketpage" method="execute">
+			<result name="success">/TOURNAMENT/cricket.jsp</result>		
+		</action>
+				
+<!-- ADD details to Database -->
+
+		<action name="approve" class="com.sports.EventApproveAct" method="execute">
+			<result name="success">/Register.jsp</result>
+		</action>
+
+<!-- View details from Database -->
+
+		<action name="crickettourpage" class="com.sports.view.ViewUpComingEvent" method="execute">
+			<result name="success">/TOURNAMENT/cricket.jsp</result>
+		</action>
+
+		<action name="viewrequests" class="com.sports.view.ViewEventReq" method="execute">
+			<result name="success">/TOURNAMENT/requests.jsp</result>
+		</action>
+		
+		<action name="approved" class="com.sports.view.ViewApproved" method="execute">
+			<result name="success">/TOURNAMENT/approve.jsp</result>
+		</action>
+		
+		<action name="availablestadium" class="com.sports.view.ViewAvailStadium" method="execute">
+			<result name="success">/TOURNAMENT/availstadium.jsp</result>
+		</action>
+		
+		<action name="selectstadium" class="com.sports.view.SetViewEventReq" method="execute">
+			<result name="success">/TOURNAMENT/setstadiumrequest.jsp</result>
+		</action>
+		
+<!-- Edit & Update details form Database -->
+<!-- Delete from Database -->
+		
+	</package>
+</struts>
